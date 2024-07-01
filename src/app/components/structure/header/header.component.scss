@@ -1,0 +1,42 @@
+$inactiveColor: rgb(218, 218, 218);
+$activeColor: rgb(109, 194, 109);
+$hoverColor: rgb(175, 200, 218);
+
+$transitionTime: 0.1s;
+
+#ID_searchBar
+{
+    background-color: $inactiveColor;
+}
+
+#ID_searchButton
+{
+    background-color: $inactiveColor;
+
+    border-left-style: dashed;
+
+    transition: 
+        scale $transitionTime, 
+        translate $transitionTime,
+        border-radius $transitionTime, 
+        background-color $transitionTime;
+}
+#ID_searchButton:hover
+{
+    background-color: $hoverColor;
+
+    border-left-style: solid;    
+    border-radius: 1rem;
+
+    scale: 1.25;
+    translate: -20px;
+}
+#ID_searchButton:active
+{
+    background-color: $activeColor;
+
+    border-left-style: dotted;
+    border-radius: 0.25rem;
+
+    scale: 1;
+}

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="col-2">
+        <a class="navbar-brand" routerLink="/home">
+            <img class="img-fluid" src="/assets/logo_les_chevaliers_emeraude.png" alt="Logo">
+        </a>   
+    </div>
+
+    <div class="collapse navbar-collapse col-5 d-flex justify-content-center align-items-center">
+        <ul class="navbar-nav flex-wrap fs-2">
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/browse"> Browse </a>
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/create"> Create </a>    
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/edit"> Edit </a>    
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/statistics"> Statistics </a>    
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/graphs"> Graphs </a>    
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/settings"> Settings </a>    
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" routerLink="/about"> About </a>    
+            </li>
+        </ul>
+    </div>
+    
+    <div class="col d-flex justify-content-center align-items-center">
+        <div class="d-flex flex-row">
+            <input id="ID_searchBar" type="text" class="fs-2 border-end-0 rounded-5 rounded-end-0 w-100 h-100 ps-3 pe-4">
+    
+            <button id="ID_searchButton" class="d-flex justify-content-center align-items-center fs-3 h-100 px-2">
+                <fa-icon [icon]="IconMagnifyingGlass"> </fa-icon>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<router-outlet> </router-outlet>
