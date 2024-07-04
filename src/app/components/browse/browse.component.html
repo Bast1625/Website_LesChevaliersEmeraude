@@ -1,1 +1,50 @@
-<p>browse works!</p>
+<div class="d-flex justify-content-center">
+    <div class="card text-center w-75">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <button class="nav-link"
+                    [class.active]="this.activeTab == 'characters'" 
+                    (click)="this.changeTab('characters')"> Personnages </button>
+                </li>
+
+                <li class="nav-item">
+                    <button class="nav-link"
+                    [class.active]="this.activeTab == 'knights'" 
+                    (click)="this.changeTab('knights')"> Chevaliers </button>
+                </li>
+
+                <li class="nav-item">
+                    <button class="nav-link"
+                    [class.active]="this.activeTab == 'locations'" 
+                    (click)="this.changeTab('locations')"> Lieux </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title" *ngIf="characters.length <= 1"> {{ characters.length }} personnage </h5>
+            <h5 class="card-title" *ngIf="characters.length > 1"> {{ characters.length }} personnages </h5>
+
+            <p class="card-text" *ngIf="characters.length == 0"> Nothing...? Refresh or try another one. </p>
+            <p class="card-text" *ngIf="characters.length > 0"> Here it is! Have fun. </p>
+            <p class="card-text" *ngIf="characters.length == undefined"> Sorry! There was an error. </p>
+            
+            <!-- <a class="btn btn-primary"> Refresh </a>  -->
+
+            <div class="d-flex flex-wrap justify-content-center gap-4 text-start mt-3">
+                <div *ngFor="let character of characters">
+
+                    <app-character-card
+                    [id]="character.id"
+                    [name]="character.name"
+                    race="Humain"
+                    [birthPlace]="character.birthPlace"
+                    job="Chevalier d''Émeraude"
+                    status="Vivant"> </app-character-card>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
