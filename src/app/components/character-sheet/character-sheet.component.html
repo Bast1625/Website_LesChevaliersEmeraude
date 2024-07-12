@@ -1,6 +1,13 @@
 <div class="d-flex justify-content-center">
     <div class="card w-75">
         <div class="card-header">            
+            <a class="d-flex flex-row gap-2 fs-4" routerLink="../"> 
+                <fa-icon [icon]="FaGoBackIcon"> </fa-icon> 
+                <span> Retour </span>
+            </a>
+            
+            <h1 class="mt-3 mb-0 text-center"> {{ this.match({ "name": this.characterName, "birthPlace": this.characterBirthPlace }) }} </h1> 
+            
             <div class="d-flex flex-row justify-content-between fs-4">
                 <div class="d-flex flex-row gap-1 align-items-center"
                 *ngIf="this.previousCharacter != undefined"> 
@@ -14,8 +21,6 @@
                     <fa-icon [icon]="FaNextIcon"> </fa-icon> 
                 </div>                
             </div> 
-
-            <h1 class="mt-3 mb-0 text-center"> {{ this.match({ "name": this.characterName, "birthPlace": this.characterBirthPlace }) }} </h1> 
         </div>
         
         <div class="card-body">
@@ -42,6 +47,12 @@
                             <span> État </span> 
                             <span class="fw-bold"> {{ this.characterState }} </span>
                         </li>
+
+                        <li class="list-group-item d-flex flex-row justify-content-between"
+                        *ngIf="this.characterAlias.length > 0"> 
+                            <span> Alias </span> 
+                            <span class="fw-bold"> {{ this.characterAlias }} </span>
+                        </li>
                     </ul>
                 </div>
                 
@@ -57,10 +68,19 @@
                         </li>
                         
                         <li class="list-group-item d-flex flex-row justify-content-between"> 
-                            <span> Lieu de résidence </span> 
-                            <span class="fw-bold"> {{ this.characterHomePlace }} </span>
+                            <span *ngIf="this.characterHomePlaces.length <= 1"> Lieu de résidence </span> 
+                            <span *ngIf="this.characterHomePlaces.length > 1"> Lieux de résidence </span> 
+                            
+                            <div class="d-flex flex-column text-end">
+                                <span *ngFor="let homePlace of this.characterHomePlaces">
+                                        
+                                    <span class="fw-bold"> {{ homePlace }} </span>
+                            
+                                </span>
+                            </div>
+                            
                             <span class="fw-bold"
-                            *ngIf="this.characterHomePlace == undefined"> Inconnu </span>
+                            *ngIf="this.characterHomePlaces.length == 0"> Inconnu </span>
                         </li>
                         
                         <li class="list-group-item d-flex flex-row justify-content-between"> 

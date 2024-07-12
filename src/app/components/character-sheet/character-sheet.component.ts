@@ -10,7 +10,7 @@ import { MatchService } from '../../services/match.service';
 import { Character } from '../../services/data/Character';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-character-sheet',
@@ -32,10 +32,11 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
     public characterName : string = "";
     public characterGender : string = "";
     public characterState : string = "";
-    
+    public characterAlias : string = "";
+
     public characterJob : string = "";
     public characterBirthPlace : string = "";
-    public characterHomePlace : string = "";
+    public characterHomePlaces : string[] = [];
 
     public characterAppearanceVolume : string = "";
     public characterDeathVolume : string = "";
@@ -56,6 +57,7 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
     public characterMasters : Character[] = [];
     public characterSquires : Character[] = [];
 
+    public FaGoBackIcon = faChevronLeft;
     public FaPreviousIcon = faCaretLeft;
     public FaNextIcon = faCaretRight;
 
@@ -85,10 +87,10 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
                 else
                     this.characterBirthPlace = "Inconnu";
 
-                if(character['homePlace'] != null)
-                    this.characterHomePlace = character['homePlace']['name'];
+                if(character['homePlaces'].length > 0)
+                    this.characterHomePlaces = character['homePlaces'].map((location: { id : number, name : string, gentilic: string }) => location.name);
                 else
-                    this.characterHomePlace = "Inconnu";
+                    this.characterHomePlaces = [];
 
                 if(character['appearanceVolume'] != null)
                     this.characterAppearanceVolume = `${character['appearanceVolume']['series']}: Tome ${character['appearanceVolume']['number']},  ${character['appearanceVolume']['title']}`;
@@ -102,6 +104,10 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
 
                 this.previousCharacter = this.browseService.getPreviousCharacter(this.characterID);
                 this.nextCharacter = this.browseService.getNextCharacter(this.characterID);
+            });
+            
+            this.characterService.GetAlias(this.characterID).subscribe(response => {
+                this.characterAlias = response == undefined ? "" : response[0];
             });
 
             this.familyService.GetBiologicalParents(this.characterID).subscribe(response => {

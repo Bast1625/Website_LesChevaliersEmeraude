@@ -23,6 +23,11 @@ export class CharacterService
         return this.http.get<Character>(`http://localhost:5031/Characters/${id}`);
     }
 
+    public GetAlias(id : number) : Observable<string[]>
+    {
+        return this.http.get<string[]>(`http://localhost:5031/Characters/${id}/alias`);
+    }
+
     public IsKnight(id : number) : Observable<boolean>
     {
         return this.http.get<boolean>(`http://localhost:5031/Knights/${id}/isKnight`)
