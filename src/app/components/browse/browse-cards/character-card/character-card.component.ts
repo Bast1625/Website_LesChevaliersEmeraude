@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-character-card',
   standalone: true,
-  imports: [RouterModule],
+  imports: [],
   templateUrl: './character-card.component.html',
   styleUrl: './character-card.component.scss'
 })
@@ -15,10 +15,19 @@ export class CharacterCardComponent
 {
     @Input() public id : number = -1;
     @Input() public name : string = "";
-    @Input() public race : string = "";
-
+    @Input() public gender : string = "";
     @Input() public birthPlace : string = "";
-    @Input() public job : string = "";
+    @Input() public role : string = "";
     @Input() public status : string = ""; 
 
+    @Output() public onCharacterSheet : EventEmitter<void> = new EventEmitter<void>();
+
+    public constructor(private router: Router, private route: ActivatedRoute) { }
+
+    public goToCharacterSheet() : void
+    {
+        this.onCharacterSheet.emit();
+        
+        this.router.navigate([ this.id ], { relativeTo: this.route });
+    }
 }

@@ -1,0 +1,266 @@
+<div class="d-flex justify-content-center">
+    <div class="card w-75">
+        <div class="card-header">            
+            <div class="d-flex flex-row justify-content-between fs-4">
+                <div class="d-flex flex-row gap-1 align-items-center"
+                *ngIf="this.previousCharacter != undefined"> 
+                    <fa-icon [icon]="FaPreviousIcon"> </fa-icon>
+                    <a [routerLink]="'../' + this.previousCharacter.id"> {{ this.match(this.previousCharacter)}} </a> 
+                </div>
+
+                <div class="d-flex flex-row gap-1 align-items-center"
+                *ngIf="this.nextCharacter != undefined">
+                    <a [routerLink]="'../' + this.nextCharacter.id"> {{ this.match(this.nextCharacter) }} </a> 
+                    <fa-icon [icon]="FaNextIcon"> </fa-icon> 
+                </div>                
+            </div> 
+
+            <h1 class="mt-3 mb-0 text-center"> {{ this.match({ "name": this.characterName, "birthPlace": this.characterBirthPlace }) }} </h1> 
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex flex-column gap-3 mt-4">
+                <div class="card">
+                    <h2 class="card-header"> Identité </h2>
+                    <ul class="list-group list-group-flush fs-4">
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Nom </span>
+                            <span class="fw-bold"> {{ this.characterName }} </span>
+                        </li>
+
+                        <li class="list-group-item d-flex flex-row justify-content-between">
+                            <span> Sexe </span>
+                            <span class="fw-bold"> {{ this.characterGender }} </span>
+                        </li>
+
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Race </span>
+                            <span class="fw-bold"> Humain </span>
+                        </li>
+
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> État </span> 
+                            <span class="fw-bold"> {{ this.characterState }} </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-header"> Status </h2>
+                    <ul class="list-group list-group-flush fs-4">
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Lieu d'origine </span> 
+                            
+                            <span class="fw-bold"> {{ this.characterBirthPlace }} </span>
+                            <span class="fw-bold"
+                            *ngIf="this.characterBirthPlace == undefined"> Inconnu </span>
+                        </li>
+                        
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Lieu de résidence </span> 
+                            <span class="fw-bold"> {{ this.characterHomePlace }} </span>
+                            <span class="fw-bold"
+                            *ngIf="this.characterHomePlace == undefined"> Inconnu </span>
+                        </li>
+                        
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Rôle </span> 
+                            <span class="fw-bold"> Chevalier d'Émeraude </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-header"> Relations </h2>
+                    <ul class="list-group list-group-flush fs-4">
+                        <li class="list-group-item d-flex flex-column gap-3"> 
+                            <div class="d-flex flex-row justify-content-between">
+                                <span> Parenté </span>
+
+                                <div class="d-flex flex-column gap-3">
+                                    <div class="d-flex flex-column text-end">
+                                        <span class="fw-medium fst-italic"> -- Parents Biologiques -- </span>
+    
+                                        <span *ngFor="let biologicalParent of this.characterBiologicalParents">
+                                        
+                                            <span class="fw-bold"> {{ this.match(biologicalParent) }} </span>
+                                        
+                                        </span>
+
+                                        <span class="fw-bold" 
+                                        *ngIf="this.characterBiologicalParents.length == 0"> Inconnus </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterStepParents.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Beaux Parents -- </span>
+    
+                                        <span *ngFor="let stepParent of this.characterStepParents">
+                                        
+                                            <span class="fw-bold"> {{ this.match(stepParent) }} </span>
+                                        
+                                        </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterAdoptiveParents.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Parents Adoptifs -- </span>
+    
+                                        <span *ngFor="let adoptiveParent of this.characterAdoptiveParents">
+                                        
+                                            <span class="fw-bold"> {{ this.match(adoptiveParent) }} </span>
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex flex-column gap-3"> 
+                            <div class="d-flex flex-row justify-content-between">
+                                <span> Fratrie </span>
+
+                                <div class="d-flex flex-column gap-3">
+                                    <div class="d-flex flex-column text-end">
+                                        <span class="fw-medium fst-italic"> -- Frères & Soeurs Biologiques -- </span>
+    
+                                        <span *ngFor="let biologicalSibling of this.characterBiologicalSiblings">
+                                        
+                                            <span class="fw-bold"> {{ this.match(biologicalSibling) }} </span>
+                                        
+                                        </span>
+
+                                        <span class="fw-bold" 
+                                        *ngIf="this.characterBiologicalSiblings.length == 0"> Inconnus </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterStepSiblings.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Demi Frères & Soeurs -- </span>
+    
+                                        <span *ngFor="let stepSibling of this.characterStepSiblings">
+                                        
+                                            <span class="fw-bold"> {{ this.match(stepSibling) }} </span>
+                                        
+                                        </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterAdoptiveSiblings.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Frères & Soeurs Adoptifs -- </span>
+    
+                                        <span *ngFor="let adoptiveSibling of this.characterAdoptiveSiblings">
+                                        
+                                            <span class="fw-bold"> {{ this.match(adoptiveSibling) }} </span>
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex flex-column gap-3"> 
+                            <div class="d-flex flex-row justify-content-between">
+                                <span> Enfants </span>
+
+                                <div class="d-flex flex-column gap-3">
+                                    <div class="d-flex flex-column text-end">
+                                        <span class="fw-medium fst-italic"> -- Enfants Biologiques -- </span>
+    
+                                        <span *ngFor="let biologicalChild of this.characterBiologicalChildren">
+                                        
+                                            <span class="fw-bold"> {{ this.match(biologicalChild) }} </span>
+                                        
+                                        </span>
+
+                                        <span class="fw-bold" 
+                                        *ngIf="this.characterBiologicalChildren.length == 0"> Inconnus </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterStepChildren.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Beaux Enfants -- </span>
+    
+                                        <span *ngFor="let stepChild of this.characterStepChildren">
+                                        
+                                            <span class="fw-bold"> {{ this.match(stepChild) }} </span>
+                                        
+                                        </span>
+                                    </div>
+
+                                    <div class="d-flex flex-column text-end"
+                                    *ngIf="this.characterAdoptiveChildren.length > 0">
+                                        <span class="fw-medium fst-italic"> -- Enfants Adoptifs -- </span>
+    
+                                        <span *ngFor="let adoptiveSibling of this.characterAdoptiveChildren">
+                                        
+                                            <span class="fw-bold"> {{ this.match(adoptiveSibling) }} </span>
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Âme soeur </span>
+                            <span class="fw-bold"> ... </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-header"> Tomes </h2>
+                    <ul class="list-group list-group-flush fs-4">
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Tome d'apparition </span> 
+                            <span class="fw-bold"> {{ this.characterAppearanceVolume }} </span>
+                        </li>
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span> Tome de décès </span> 
+                            <span class="fw-bold"> {{ this.characterDeathVolume }} </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card"
+                *ngIf="this.isKnight">
+                    <h2 class="card-header"> Chevalier </h2>
+                    <ul class="list-group list-group-flush fs-4">
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span *ngIf="this.characterMasters.length <= 1"> Maître </span> 
+                            <span *ngIf="this.characterMasters.length > 1"> Maîtres </span> 
+
+                            <div class="d-flex flex-column fw-bold text-end"> 
+                                <span *ngFor="let master of this.characterMasters">
+
+                                    <span> {{ master.name }} d'Émeraude </span>
+
+                                </span>
+
+                                <span *ngIf="this.characterMasters.length == 0"> Aucun </span>
+                            </div>
+
+                        </li>
+
+                        <li class="list-group-item d-flex flex-row justify-content-between"> 
+                            <span *ngIf="this.characterSquires.length <= 1"> Écuyer </span> 
+                            <span *ngIf="this.characterSquires.length > 1"> Écuyers </span> 
+
+                            <div class="d-flex flex-column text-end fw-bold">
+                                <span *ngFor="let squire of this.characterSquires">
+
+                                    <span> {{ squire.name }} d'Émeraude </span>
+
+                                </span>
+
+                                <span *ngIf="this.characterSquires.length == 0"> Aucun </span>
+                            </div> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

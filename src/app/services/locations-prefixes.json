@@ -1,0 +1,33 @@
+{
+    "locations_prefixes": [
+        { "name": "Émeraude", "prefix": "d'" },
+        { "name": "Diamant", "prefix": "de " },
+        { "name": "Argent", "prefix": "d'" },
+        { "name": "Rubis", "prefix": "de " },
+        { "name": "Béryl", "prefix": "de " },
+        { "name": "Jade", "prefix": "de " },
+        { "name": "Turquoise", "prefix": "de " },
+        { "name": "Cristal", "prefix": "de " },
+        { "name": "Opale", "prefix": "d'" },
+        { "name": "Fal", "prefix": "de " },
+        { "name": "Perle", "prefix": "de " },
+        { "name": "Shola", "prefix": "de " },
+        { "name": "Zénor", "prefix": "de " },
+        { "name": "Elfes", "prefix": "des " },
+        { "name": "Fées", "prefix": "des " },
+        { "name": "Désert", "prefix": "du " },
+        { "name": "Espérita", "prefix": "d'" },
+        { "name": "Alombria", "prefix": "d'" },
+        { "name": "Iranieth", "prefix": "d'" },
+        { "name": "Adoradéa", "prefix": "d'" },
+        { "name": "Ipoca", "prefix": "d'" },
+        { "name": "Itzaman", "prefix": "d'" },
+        { "name": "Tepecoalt", "prefix": "de " },
+        { "name": "Mixilzin", "prefix": "de " },
+        { "name": "Madidjin", "prefix": "de " },
+        { "name": "Ressakan", "prefix": "de " },
+        { "name": "Panthéon félin", "prefix": "du " },
+        { "name": "Panthéon aviaire", "prefix": "du " },
+        { "name": "Panthéon reptilien","prefix":  "du "}
+    ]
+}

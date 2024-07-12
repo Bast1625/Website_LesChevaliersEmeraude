@@ -4,12 +4,14 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowseComponent } from './components/browse/browse.component';
 import { CreateComponent } from './components/create/create.component';
 
+import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
+
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full"},
     { path: "home", component: HomeComponent },
     
     { path: "browse", component: BrowseComponent },
-    { path: "browse/:name", component: BrowseComponent },
+    { path: "browse/:id", component: CharacterSheetComponent },
 
     { path: "create", component: CreateComponent },    
     { path: "edit", component: HomeComponent },    

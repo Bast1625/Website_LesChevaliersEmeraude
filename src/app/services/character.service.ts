@@ -2,17 +2,78 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Character } from './data/Character';
+import { ChildParentsRelationship } from './data/Family';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class CharacterService 
 {
-    private readonly API_URL : string = "http://localhost:5031/Characters"
     public constructor(private http : HttpClient) { }
     
-    public GetCharacters()
+    public GetCharacters() : Observable<Character[]>
     {
-        return this.http.get(this.API_URL);  
+        return this.http.get<Character[]>("http://localhost:5031/Characters");  
+    }
+
+    public GetCharacterByID(id : number) : Observable<Character>
+    {
+        return this.http.get<Character>(`http://localhost:5031/Characters/${id}`);
+    }
+
+    public IsKnight(id : number) : Observable<boolean>
+    {
+        return this.http.get<boolean>(`http://localhost:5031/Knights/${id}/isKnight`)
+    }
+
+    public GetMasters(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Knights/${id}/master`);
+    }
+
+    public GetSquires(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Knights/${id}/squires`);
+    }
+
+    public GetBiologicalParents(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents`);
+    }
+    public GetStepParents(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents/step`);
+    }
+    public GetAdoptiveParents(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents/adoptive`);
+    }
+
+    public GetBiologicalSiblings(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings`);
+    }
+    public GetStepSiblings(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings/step`);
+    }
+    public GetAdoptiveSiblings(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings/adoptive`);
+    }
+
+    public GetBiologicalChildren(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children`);
+    }
+    public GetStepChildren(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children/step`);
+    }
+    public GetAdoptiveChildren(id : number) : Observable<Character[]>
+    {
+        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children/adoptive`);
     }
 }
