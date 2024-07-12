@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 
 import { CharacterService } from '../../services/character.service';
+import { FamilyService } from '../../services/family.service';
 import { BrowseService } from '../../services/browse.service';
 import { MatchService } from '../../services/match.service';
 
@@ -61,6 +62,7 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
     public constructor(
         private currentRoute : ActivatedRoute, 
         private characterService : CharacterService,
+        private familyService : FamilyService,
         private browseService : BrowseService,
         private matchService : MatchService
     ) { }
@@ -102,33 +104,33 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
                 this.nextCharacter = this.browseService.getNextCharacter(this.characterID);
             });
 
-            this.characterService.GetBiologicalParents(this.characterID).subscribe(response => {
+            this.familyService.GetBiologicalParents(this.characterID).subscribe(response => {
                 this.characterBiologicalParents = response == null ? [] : response;
             });
-            this.characterService.GetStepParents(this.characterID).subscribe(response => {
+            this.familyService.GetStepParents(this.characterID).subscribe(response => {
                 this.characterStepParents = response == null ? [] : response;
             });
-            this.characterService.GetAdoptiveParents(this.characterID).subscribe(response => {
+            this.familyService.GetAdoptiveParents(this.characterID).subscribe(response => {
                 this.characterAdoptiveParents = response == null ? [] : response;
             });
 
-            this.characterService.GetBiologicalSiblings(this.characterID).subscribe(response => {
+            this.familyService.GetBiologicalSiblings(this.characterID).subscribe(response => {
                 this.characterBiologicalSiblings = response == null ? [] : response;
             });
-            this.characterService.GetStepSiblings(this.characterID).subscribe(response => {
+            this.familyService.GetStepSiblings(this.characterID).subscribe(response => {
                 this.characterStepSiblings = response == null ? [] : response;
             });
-            this.characterService.GetAdoptiveSiblings(this.characterID).subscribe(response => {
+            this.familyService.GetAdoptiveSiblings(this.characterID).subscribe(response => {
                 this.characterAdoptiveSiblings = response == null ? [] : response;
             });
 
-            this.characterService.GetBiologicalChildren(this.characterID).subscribe(response => {
+            this.familyService.GetBiologicalChildren(this.characterID).subscribe(response => {
                 this.characterBiologicalChildren = response == null ? [] : response;
             });
-            this.characterService.GetStepChildren(this.characterID).subscribe(response => {
+            this.familyService.GetStepChildren(this.characterID).subscribe(response => {
                 this.characterStepChildren = response == null ? [] : response;
             });
-            this.characterService.GetAdoptiveChildren(this.characterID).subscribe(response => {
+            this.familyService.GetAdoptiveChildren(this.characterID).subscribe(response => {
                 this.characterAdoptiveChildren = response == null ? [] : response;
             });
 

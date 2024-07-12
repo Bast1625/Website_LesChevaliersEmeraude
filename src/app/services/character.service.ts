@@ -37,43 +37,4 @@ export class CharacterService
     {
         return this.http.get<Character[]>(`http://localhost:5031/Knights/${id}/squires`);
     }
-
-    public GetBiologicalParents(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents`);
-    }
-    public GetStepParents(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents/step`);
-    }
-    public GetAdoptiveParents(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/parents/adoptive`);
-    }
-
-    public GetBiologicalSiblings(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings`);
-    }
-    public GetStepSiblings(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings/step`);
-    }
-    public GetAdoptiveSiblings(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/siblings/adoptive`);
-    }
-
-    public GetBiologicalChildren(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children`);
-    }
-    public GetStepChildren(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children/step`);
-    }
-    public GetAdoptiveChildren(id : number) : Observable<Character[]>
-    {
-        return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children/adoptive`);
-    }
 }
