@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Character } from './data/Character';
+import { Character } from '../data/Character';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class BrowseService 
+export class BrowseService
 {
     private characters : Character[] = [];
 

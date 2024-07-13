@@ -1,0 +1,14 @@
+<div class="d-flex flex-wrap justify-content-center gap-4 text-start mt-3">
+    <div *ngFor="let knight of this.knights">
+
+        <app-knight-card
+        [id]="knight.id"
+        [name]="knight.name"
+        [gender]="knight.gender"
+        [birthPlace]="knight.birthPlace"
+        [status]="knight.status"
+        [generation]="knight.generation"
+        (onCharacterSheet)="this.onCharacterSheet()"> </app-knight-card>
+
+    </div>
+</div>

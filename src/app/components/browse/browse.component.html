@@ -23,27 +23,14 @@
         </div>
 
         <div class="card-body">
-            <h5 class="card-title" *ngIf="characters.length <= 1"> {{ characters.length }} personnage </h5>
-            <h5 class="card-title" *ngIf="characters.length > 1"> {{ characters.length }} personnages </h5>
+            <h5 class="card-title" *ngIf="this.datasetSize <= 1"> {{ this.datasetSize }} personnage </h5>
+            <h5 class="card-title" *ngIf="this.datasetSize > 1"> {{ this.datasetSize }} personnages </h5>
 
-            <p class="card-text" *ngIf="characters.length == 0"> Nothing...? Refresh or try another one. </p>
-            <p class="card-text" *ngIf="characters.length > 0"> Here it is! Have fun. </p>
-            <p class="card-text" *ngIf="characters.length == undefined"> Sorry! There was an error. </p>
-
-            <div class="d-flex flex-wrap justify-content-center gap-4 text-start mt-3">
-                <div *ngFor="let character of this.characters">
-
-                    <app-character-card
-                    [id]="character.id"
-                    [name]="character.name"
-                    [gender]="character.gender"
-                    [birthPlace]="character.birthPlace"
-                    [role]="character.role"
-                    [status]="character.status"
-                    (onCharacterSheet)="this.onCharacterSheet()"> </app-character-card>
-    
-                </div>
-            </div>
+            <p class="card-text" *ngIf="this.datasetSize == 0"> Nothing...? Refresh or try another one. </p>
+            <p class="card-text" *ngIf="this.datasetSize > 0"> Here it is! Have fun. </p>
+            <p class="card-text" *ngIf="this.datasetSize == undefined"> Sorry! There was an error. </p>
+  
+            <router-outlet> </router-outlet>
         </div>
     </div>
 </div>

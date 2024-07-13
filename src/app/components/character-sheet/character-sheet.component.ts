@@ -4,7 +4,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 
 import { CharacterService } from '../../services/character.service';
 import { FamilyService } from '../../services/family.service';
-import { BrowseService } from '../../services/browse.service';
+import { BrowseService } from '../../services/browse-services/browse.service';
 import { MatchService } from '../../services/match.service';
 
 import { Character } from '../../services/data/Character';

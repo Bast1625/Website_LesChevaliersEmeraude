@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Character } from './data/Character';
+import { Knight } from './data/Knight';
 import { ChildParentsRelationship } from './data/Family';
 
 @Injectable({
@@ -26,6 +27,11 @@ export class CharacterService
     public GetAlias(id : number) : Observable<string[]>
     {
         return this.http.get<string[]>(`http://localhost:5031/Characters/${id}/alias`);
+    }
+
+    public GetKnights() : Observable<Knight[]>
+    {
+        return this.http.get<Knight[]>(`http://localhost:5031/Knights`)
     }
 
     public IsKnight(id : number) : Observable<boolean>
