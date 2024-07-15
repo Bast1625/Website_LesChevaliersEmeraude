@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CharacterCardComponent } from '../../browse-cards/character-card/character-card.component';
@@ -31,8 +31,6 @@ export class BrowseCharactersViewComponent implements OnInit
             this.characters = response;
 
             this.characters = this.characters.sort((a, b) => a.name.localeCompare(b.name));
-
-            
         })    
     }
 

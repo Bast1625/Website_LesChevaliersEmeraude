@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 import { Character } from './data/Character';
 import { Knight } from './data/Knight';
-import { ChildParentsRelationship } from './data/Family';
 
 @Injectable({
   providedIn: 'root'

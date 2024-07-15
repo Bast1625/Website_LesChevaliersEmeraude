@@ -6,7 +6,7 @@ import { CreateComponent } from './components/create/create.component';
 
 import { BrowseCharactersViewComponent } from './components/browse/browse-views/browse-characters-view/browse-characters-view.component';
 import { BrowseKnightsViewComponent } from './components/browse/browse-views/browse-knights-view/browse-knights-view.component';
-
+import { BrowseLocationsViewComponent } from './components/browse/browse-views/browse-locations-view/browse-locations-view.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
 
 export const routes: Routes = [
@@ -20,7 +20,7 @@ export const routes: Routes = [
             { path: "", redirectTo: "characters", pathMatch: "prefix" },
             { path: "characters", component: BrowseCharactersViewComponent },
             { path: "knights", component: BrowseKnightsViewComponent },
-            { path: "locations", component: BrowseKnightsViewComponent }
+            { path: "locations", component: BrowseLocationsViewComponent }
         ]
     },
     { path: "browse/characters/:id", component: CharacterSheetComponent },

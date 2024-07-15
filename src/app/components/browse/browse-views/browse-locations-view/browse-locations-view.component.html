@@ -1,0 +1,12 @@
+<div class="d-flex flex-wrap justify-content-center gap-4 text-start mt-3">
+    <div *ngFor="let location of this.locations">
+
+        <app-location-card
+        [id]="location.id"
+        [name]="location.name"
+        [gentilic]="location.gentilic"
+        [continent]="location.continent"
+        [religion]="location.religion?.name"> </app-location-card>
+
+    </div>
+</div>
