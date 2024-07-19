@@ -28,6 +28,11 @@ export class CharacterService
         return this.http.get<string[]>(`http://localhost:5031/Characters/${id}/alias`);
     }
 
+    public CreateCharacter(newCharacter : { name: string, gender: string, birthPlaceId: number, appearanceVolumeId: number | null, deathVolumeId: number | null }) : Observable<number>
+    {
+        return this.http.post<number>(`http://localhost:5031/Characters`, newCharacter);
+    }
+
     public GetKnights() : Observable<Knight[]>
     {
         return this.http.get<Knight[]>(`http://localhost:5031/Knights`)

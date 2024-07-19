@@ -9,6 +9,8 @@ import { BrowseKnightsViewComponent } from './components/browse/browse-views/bro
 import { BrowseLocationsViewComponent } from './components/browse/browse-views/browse-locations-view/browse-locations-view.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
 
+import { CreateCharacterSheetComponent } from './components/create/create-sheets/create-character-sheet/create-character-sheet.component';
+
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full"},
     { path: "home", component: HomeComponent },
@@ -26,7 +28,9 @@ export const routes: Routes = [
     { path: "browse/characters/:id", component: CharacterSheetComponent },
     { path: "browse/knights/:id", component: CharacterSheetComponent },
 
-    { path: "create", component: CreateComponent },    
+    { path: "create", component: CreateComponent },
+    { path: "create/character", component: CreateCharacterSheetComponent },
+
     { path: "edit", component: HomeComponent },    
     { path: "statistics", component: HomeComponent },    
     { path: "graphs", component: HomeComponent },    

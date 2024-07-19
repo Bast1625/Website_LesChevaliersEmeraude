@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+        CommonModule,
+        
+    ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
@@ -12,7 +16,9 @@ import { CommonModule } from '@angular/common';
 export class CreateComponent 
 {
     public cards = [
-        { name: 'Personnage', content: 'Ajouter un mortel ou un immortel'},
+        
+        { name: 'Personnage', content: 'Ajouter un personnage et l\'intégrer avec les autres éléments tels que ses relations familiales ou les lieux d\'habitation.'},
+
         { name: 'Lieu', content: 'Ajouter un lieu, un royaume, une île ou un panthéon'},
         { name: 'Tome', content: 'Ajouter un tome appartenant aux nombreuses séries fantastiques écrites par Anne Robillard'},
         { name: 'Race', content: 'Ajouter une race habitant les différents lieux'},
@@ -21,4 +27,11 @@ export class CreateComponent
         { name: 'Famille', content: 'Établir les relations familiales entre plusieurs personnages'},
         { name: 'Souveraineté', content: 'Établir les souverains des différents royaumes d\'Enki\'Enlil'},
     ];
+
+    public constructor(private router : Router, private route : ActivatedRoute) { }
+
+    public goToCreateCharacterForm() : void
+    {
+        this.router.navigate(["character"], { relativeTo: this.route });
+    }
 }

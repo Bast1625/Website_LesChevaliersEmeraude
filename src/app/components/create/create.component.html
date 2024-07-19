@@ -1,18 +1,17 @@
-<div class="d-flex justify-content-center w-100 mt-5">
-    <div class="d-flex flex-wrap gap-3 justify-content-evenly w-75">
-        <div *ngFor="let card of cards; let cardIndex = index;">
+<div class="d-flex justify-content-center w-100">
+    <div class="d-flex flex-row gap-4 flex-wrap justify-content-center w-75">
+        <span *ngFor="let card of this.cards">
     
-            <div class="card" style="width: 25rem;"> 
+            <div class="card" style="width: 25rem; min-height: 20rem;">                 
+                <h2 class="card-header"> {{ card.name }} </h2>
                 <div class="card-body d-flex flex-column justify-content-between">
-                    <div class="mb-5">
-                        <h2 class="card-title"> {{ card.name }} </h2>
-                        <p class="card-text fs-4"> {{ card.content }} </p>
-                    </div>
-        
-                    <a class="btn btn-primary fs-5" style="width: min-content;"> Créer </a>
+                    <h5 class="card-text"> {{ card.content }} </h5>
+                
+                    <a class="btn btn-primary fs-5" style="width: min-content;"
+                    (click)="this.goToCreateCharacterForm()"> Créer </a>
                 </div>
             </div>
-        
-        </div>
+    
+        </span>
     </div>
 </div>

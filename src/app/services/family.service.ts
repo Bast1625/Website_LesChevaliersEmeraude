@@ -51,4 +51,9 @@ export class FamilyService
     {
         return this.http.get<Character[]>(`http://localhost:5031/Families/${id}/children/adoptive`);
     }
+
+    public CreateFamily(newFamily : { childId : number, parent1Id : number, parent2Id : number, isBiological : boolean }[])
+    {
+        return this.http.post(`http://localhost:5031/Families`, newFamily);
+    }
 }

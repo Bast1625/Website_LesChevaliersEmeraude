@@ -1,0 +1,13 @@
+<select
+[(ngModel)]="this.selection" 
+(change)="this.onSelection.emit(this.selection)">
+    
+    <option [ngValue]="this.defaultValue.value" selected> {{ this.defaultValue.textContent }} </option>
+
+    <option 
+    [ngValue]="entry.value"
+    *ngFor="let entry of this.data">
+        {{ entry.textContent }}
+    </option>
+
+</select>
