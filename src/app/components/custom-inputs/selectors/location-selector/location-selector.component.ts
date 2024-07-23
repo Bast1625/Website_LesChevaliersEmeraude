@@ -2,9 +2,9 @@ import { Component, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { LocationService } from '../../../services/location.service';
+import { LocationService } from '../../../../services/location.service';
 
-import { Location } from '../../../services/data/Location';
+import { Location } from '../../../../services/data/Location';
 
 import { CustomSelectorComponent } from '../custom-selector/custom-selector.component';
 

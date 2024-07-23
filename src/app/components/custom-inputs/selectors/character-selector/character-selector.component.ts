@@ -2,10 +2,10 @@ import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { CharacterService } from '../../../services/character.service';
-import { MatchService } from '../../../services/match.service';
+import { CharacterService } from '../../../../services/character.service';
+import { MatchService } from '../../../../services/match.service';
 
-import { Character } from '../../../services/data/Character';
+import { Character } from '../../../../services/data/Character';
 
 import { CustomSelectorComponent } from '../custom-selector/custom-selector.component';
 

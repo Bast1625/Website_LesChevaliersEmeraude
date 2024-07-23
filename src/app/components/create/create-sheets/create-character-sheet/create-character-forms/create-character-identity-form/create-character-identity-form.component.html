@@ -1,0 +1,29 @@
+<div class="card" [formGroup]="this.createCharacterIdentityForm">
+    <div class="card-header d-flex flex-row justify-content-between"> 
+        <h2> Identité </h2>
+    </div>
+
+    <ul class="list-group list-group-flush fs-4">
+        <li class="list-group-item d-flex flex-row justify-content-between"> 
+            <label for="ID_characterName"> Nom </label>
+
+            <input id="ID_characterName" type="text" formControlName="characterName">
+        </li>
+
+        <li class="list-group-item d-flex flex-row justify-content-between"> 
+            <label> Sexe </label>
+
+            <select class="text-end" formControlName="characterGender">
+                
+                <option selected> M </option>
+                <option> F </option>
+            </select>
+        </li>
+
+        <li class="list-group-item d-flex flex-row justify-content-between"> 
+            <label for="ID_characterState"> Race(s) </label>
+            
+            <input id="ID_characterRaces" type="text" formControlName="characterRaces">
+        </li>
+    </ul>
+</div>

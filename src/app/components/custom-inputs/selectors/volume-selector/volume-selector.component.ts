@@ -2,9 +2,9 @@ import { Component, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { VolumeService } from '../../../services/volume.service';
+import { VolumeService } from '../../../../services/volume.service';
 
-import { Volume } from '../../../services/data/Volume';
+import { Volume } from '../../../../services/data/Volume';
 
 import { CustomSelectorComponent } from '../custom-selector/custom-selector.component';
 

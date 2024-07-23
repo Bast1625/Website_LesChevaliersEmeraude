@@ -1,0 +1,47 @@
+<div class="card" [formGroup]="this.createCharacterFamilyForm">
+    <div class="card-header d-flex flex-row justify-content-between"> 
+        <h2> Relations </h2>
+    </div>
+
+    <ul class="list-group list-group-flush fs-4">
+        <li class="list-group-item d-flex flex-row justify-content-between" formGroupName="characterFamilies"> 
+            <div class="d-flex flex-column">
+                <span> Parenté </span>
+                
+                <quantity-controller
+                (onRemove)="this.removeFamily()"
+                [minimumQuantity]="1"
+                [currentQuantity]="this.characterFamilies.length"
+                [maximumQuantity]="3"
+                (onAdd)="this.addFamily()"> </quantity-controller>
+            </div>
+
+            <div class="d-flex flex-column gap-4 text-end">
+                <div class="d-flex flex-column flex-wrap" 
+                *ngFor="let family of this.characterFamilies.controls; let i = index"
+                [formGroupName]="i">
+                    <div> 
+                        <button 
+                            class="btn rounded-4"
+                            [ngClass]="{ 
+                                'btn-outline-success': family.value.isBiological,
+                                'btn-outline-secondary': !family.value.isBiological
+                            }"
+                            [disabled]="family.value.isBiological"
+                            (click)="this.markAsBiological(family.value)">
+                            <fa-icon [icon]="FaBiologicalIcon"> </fa-icon>
+                        </button>
+
+                        <label class="fst-italic"> Parents #{{ i + 1 }} </label>
+                    </div>  
+                    
+                    <div class="d-flex flex-column">
+                        <character-selector formControlName="parent1Id"> </character-selector>
+                        
+                        <character-selector formControlName="parent2Id"> </character-selector>
+                    </div>                
+                </div> 
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,55 @@
+<div class="card" [formGroup]="this.createCharacterStatusForm">
+    <div class="card-header d-flex flex-row justify-content-between"> 
+        <h2> Status </h2>
+    </div>
+
+    <ul class="list-group list-group-flush fs-4">
+        <li class="list-group-item d-flex flex-row justify-content-between"> 
+            <label for="ID_characterName"> Lieu d'origine </label>
+            
+            <location-selector formControlName="characterBirthPlace"> </location-selector>
+        </li>
+
+        <li class="list-group-item d-flex flex-row justify-content-between"> 
+            <label> Lieu(x) de résidence </label>
+
+            <location-selector formControlName="characterHomePlaces"> </location-selector>
+        </li>
+
+        <li class="list-group-item d-flex flex-row justify-content-between" formGroupName="characterOccupations"> 
+            <div class="d-flex flex-column">
+                <label for="ID_characterOccupations"
+                *ngIf="this.characterOccupations.length <= 1"> Occupation </label>
+                <label for="ID_characterOccupations"
+                *ngIf="this.characterOccupations.length > 1"> Occupations </label>
+                
+                <quantity-controller
+                (onRemove)="this.removeOccupation()"
+                [minimumQuantity]="1"
+                [currentQuantity]="this.characterOccupations.length"
+                [maximumQuantity]="5"
+                (onAdd)="this.addOccupation()"> </quantity-controller>
+            </div>
+
+            <div class="d-flex flex-column gap-4 text-end">
+
+                <div class="d-flex flex-column flex-wrap" 
+                *ngFor="let occupation of this.characterOccupations.controls; let i = index"
+                [formGroupName]="i">
+                    <label class="fst-italic" *ngIf="occupation.value.name == ''"> Occupation #{{ i + 1 }} </label>
+                    <label class="fst-italic"
+                    *ngIf="occupation.value.name != ''"> 
+                        {{ this.match( { name: occupation.value.name, birthPlace: occupation.value.location.name } ) }} 
+                    </label>
+
+                    <div class="d-flex flex-column">
+                        <input formControlName="name">
+
+                        <location-selector formControlName="location"> </location-selector>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+    </ul>
+</div>

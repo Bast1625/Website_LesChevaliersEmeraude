@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ObservedValueOf } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormArray, FormsModule } from '@angular/forms';
 
 import { MatchService } from '../../../../services/match.service';
 import { CharacterService } from '../../../../services/character.service';
@@ -12,23 +13,30 @@ import { FamilyService } from '../../../../services/family.service';
 import { Character } from '../../../../services/data/Character';
 import { Location } from '../../../../services/data/Location';
 
-import { CharacterSelectorComponent } from "../../../selectors/character-selector/character-selector.component";
-import { LocationSelectorComponent } from "../../../selectors/location-selector/location-selector.component";
+import { CreateCharacterIdentityFormComponent } from './create-character-forms/create-character-identity-form/create-character-identity-form.component';
+import { CreateCharacterStatusFormComponent } from "./create-character-forms/create-character-status-form/create-character-status-form.component";
+import { CreateCharacterFamilyFormComponent } from './create-character-forms/create-character-family-form/create-character-family-form.component';
+
+import { CharacterSelectorComponent } from '../../../custom-inputs/selectors/character-selector/character-selector.component';
+import { LocationSelectorComponent } from '../../../custom-inputs/selectors/location-selector/location-selector.component';
+import { VolumeSelectorComponent } from '../../../custom-inputs/selectors/volume-selector/volume-selector.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronLeft, faPlusCircle, faMinusCircle, faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { VolumeSelectorComponent } from "../../../selectors/volume-selector/volume-selector.component";
 
 @Component({
   selector: 'app-create-character-sheet',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule, FormsModule,
     FontAwesomeModule,
     CharacterSelectorComponent,
     LocationSelectorComponent,
-    VolumeSelectorComponent
+    VolumeSelectorComponent,
+    CreateCharacterIdentityFormComponent,
+    CreateCharacterStatusFormComponent,
+    CreateCharacterFamilyFormComponent
 ],
   templateUrl: './create-character-sheet.component.html',
   styleUrl: './create-character-sheet.component.scss'
@@ -51,23 +59,6 @@ export class CreateCharacterSheetComponent implements OnInit
     public appearanceVolumeId : number = 0;
     public deathVolumeId : number = 0;
 
-    public infoCards = [
-        {
-            name: "Statut",
-            toggled: false
-        },
-
-        {
-            name: "Tomes",
-            toggled: false
-        },
-
-        {
-            name: "Chevalier",
-            toggled: false
-        }
-    ];
-
     public FaGoBackIcon = faChevronLeft;
     public FaPlusIcon = faPlusCircle;
     public FaMinusIcon = faMinusCircle;
@@ -78,70 +69,66 @@ export class CreateCharacterSheetComponent implements OnInit
         private matchService : MatchService, 
         private characterService : CharacterService, private locationService : LocationService,
         private familyService : FamilyService,
+        private formBuilder : FormBuilder
     ) { }
+
+    public createCharacterForm: FormGroup<ICreateCharacterForm> = this.formBuilder.group<ICreateCharacterForm>({ });
 
     public ngOnInit() : void
     {
         
     }
 
-    public match(character : Character | { "name": string, "birthPlace" : string }) : string
+    public appendForm<TForm extends keyof ICreateCharacterForm>(
+        formName: TForm, 
+        formGroup: Exclude<ICreateCharacterForm[TForm], undefined>) : void
     {
-        return this.matchService.matchNameLocation(character.name, character.birthPlace);
+        this.createCharacterForm.addControl(formName, formGroup);
     }
 
-    public createCharacter() : void
+    public get fullName() : string
     {
+        let characterName = this.createCharacterForm.get('characterIdentity')?.get('characterName')?.value;
+        let characterBirthPlace = this.createCharacterForm.get('characterStatus')?.get('characterBirthPlace')?.value;
+
+        return this.matchService.matchNameLocation(characterName, characterBirthPlace?.name);
+    }
+
+    public onSubmit() : void
+    {
+        console.log("Submitted");
+        let toSubmit = this.createCharacterForm.value;
         this.characterService.CreateCharacter({
-            name: this.name,
-            gender: this.gender,
-            birthPlaceId: this.birthPlace.id,
-            appearanceVolumeId:  this.appearanceVolumeId,
-            deathVolumeId: this.deathVolumeId,
-        }).subscribe(newCharacterID => {
-            
-            this.familyService.CreateFamily(this.families.map(family => {
+            name: toSubmit.characterIdentity.characterName,
+            gender: toSubmit.characterIdentity.characterGender,
+            birthPlaceId: toSubmit.characterStatus.characterBirthPlace.id,
+            appearanceVolumeId: 1,
+            deathVolumeId: null,
+        }).subscribe(newCharacterID => {            
+            this.familyService.CreateFamily((this.createCharacterForm.get('characterRelationships')?.get('characterFamilies') as FormArray).controls.map(family => {
                 return {
                     childId: newCharacterID,
-                    parent1Id: family.parent1Id,
-                    parent2Id: family.parent2Id,
-                    isBiological: family.isBiological
+                    parent1Id: family.value.parent1Id,
+                    parent2Id: family.value.parent2Id,
+                    isBiological: family.value.isBiological
                 };
             })).subscribe(response => {
-                alert(this.match({ name: this.name, birthPlace: this.birthPlace.name }) + " was created!");
+                alert(this.fullName + " was created!");
                 this.router.navigate(["browse"]);
             });
         });
     }
 
-    public toggle(infoCard : { name: string, toggled: boolean }) : void
-    {
-        infoCard.toggled = !infoCard.toggled;
-    }
+   
 
-    public addFamily() : void
-    {
-        let newFamily = {
-            parent1Id: 0,
-            parent2Id: 0,
-            isBiological: !this.families.some(family => family.isBiological)
-        };
+    
+    
+    
+}
 
-        this.families.push(newFamily);
-    }
-
-    public removeFamily() : void
-    {
-        this.families.pop();
-
-        if(this.families.every(family => !family.isBiological))
-            this.families[this.families.length - 1].isBiological = true;
-    }
-
-    public markAsBiological(family : { isBiological : boolean }) : void
-    {
-        this.families.forEach(family => family.isBiological = false);
-
-        family.isBiological = true;
-    }
+interface ICreateCharacterForm
+{
+    characterIdentity?: ObservedValueOf<CreateCharacterIdentityFormComponent['onFormReady']>;
+    characterStatus?: ObservedValueOf<CreateCharacterStatusFormComponent['onFormReady']>;
+    characterRelationships?: ObservedValueOf<CreateCharacterFamilyFormComponent['onFormReady']>;
 }

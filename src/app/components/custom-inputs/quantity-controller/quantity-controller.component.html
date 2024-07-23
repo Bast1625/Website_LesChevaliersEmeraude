@@ -1,0 +1,23 @@
+<div class="d-flex flex-row gap-2">
+    <button class="btn"
+    [ngClass]="{ 
+        'btn-primary': !(this.currentQuantity <= this.minimumQuantity),
+        'btn-secondary': this.currentQuantity <= this.minimumQuantity
+    }"
+    [disabled]="this.currentQuantity <= this.minimumQuantity"
+    (click)="this.remove()">
+        <fa-icon [icon]="FaRemoveIcon"> </fa-icon>
+    </button>
+
+    <span> {{ this.currentQuantity }} </span>
+
+    <button class="btn"
+    [ngClass]="{ 
+        'btn-primary': !(this.currentQuantity >= this.maximumQuantity),
+        'btn-secondary': this.currentQuantity >= this.maximumQuantity
+    }"
+    [disabled]="this.currentQuantity >= this.maximumQuantity"
+    (click)="this.add()">
+        <fa-icon [icon]="FaAddIcon"> </fa-icon>
+    </button>
+</div>
