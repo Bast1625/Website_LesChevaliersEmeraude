@@ -8,6 +8,7 @@ import { BrowseCharactersViewComponent } from './components/browse/browse-views/
 import { BrowseKnightsViewComponent } from './components/browse/browse-views/browse-knights-view/browse-knights-view.component';
 import { BrowseLocationsViewComponent } from './components/browse/browse-views/browse-locations-view/browse-locations-view.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
+import { PrototypeSheetComponent } from './components/sheet/prototype-sheet/prototype-sheet.component';
 
 import { CreateCharacterSheetComponent } from './components/create/create-sheets/create-character-sheet/create-character-sheet.component';
 
@@ -30,6 +31,7 @@ export const routes: Routes = [
 
     { path: "create", component: CreateComponent },
     { path: "create/character", component: CreateCharacterSheetComponent },
+    { path: "create/prototype", component: PrototypeSheetComponent },
 
     { path: "edit", component: HomeComponent },    
     { path: "statistics", component: HomeComponent },    

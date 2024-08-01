@@ -158,7 +158,7 @@ export class CharacterSheetComponent implements OnInit, OnDestroy
 
     public match(character : Character | { "name": string, "birthPlace" : string }) : string
     {
-        return this.matchService.matchNameLocation(character.name, character.birthPlace);
+        return this.matchService.match(character.name, character.birthPlace) ?? "";
     }
 
     public ngOnDestroy(): void 

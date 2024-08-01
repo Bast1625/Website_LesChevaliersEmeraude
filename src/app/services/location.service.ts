@@ -15,4 +15,9 @@ export class LocationService
     {
         return this.http.get<Location[]>("http://localhost:5031/Locations");
     }
+
+    public GetLocationById(id : number) : Observable<Location>
+    {
+        return this.http.get<Location>(`http://localhost:5031/Locations/${id}`);
+    }
 }

@@ -1,0 +1,37 @@
+<app-sheet-card title="Status" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Lieu d'origine">
+
+        <location-selector 
+        formControlName="birthPlace"> </location-selector>
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Lieu(x) de résidence">
+        
+        <div class="d-flex flex-column gap-4 justify-content-center align-items-end">
+            <quantity-controller 
+                [minimumQuantity]="0"
+                [currentQuantity]="this.homePlaces.length"
+                [maximumQuantity]="5"
+                (onAdd)="this.addHomePlace()"
+                (onRemove)="this.removeHomePlace()"> 
+            </quantity-controller>
+        
+            <div class="d-flex flex-column gap-3">
+                <div class="d-flex flex-column align-items-end"
+                formGroupName="homePlacesIds"
+                *ngFor="let homePlace of this.homePlaces.controls; let i = index">
+
+                    <label class="fst-italic"> {{ this.getFullName(homePlace) || "Résidence #" + (i + 1) }} </label>
+                
+                    <location-selector
+                    [formControlName]="i"> </location-selector>
+    
+                </div>
+
+                <span class="fs-4" *ngIf="this.homePlaces.length == 0"> Aucun </span>
+            </div>
+        </div>
+        
+    </app-sheet-card-property>
+</app-sheet-card>

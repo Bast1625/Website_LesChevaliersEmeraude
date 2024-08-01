@@ -1,0 +1,19 @@
+<div class="card-header row m-0">
+    <div class="col-3 d-flex justify-content-start align-items-start">
+        <a class="d-flex flex-row gap-2 fs-4" routerLink="../"> 
+            <!-- <fa-icon [icon]="FaGoBackIcon"> </fa-icon>  -->
+            <span> Retour </span>
+        </a>
+    </div>
+    
+    <div class="col-6 d-flex justify-content-center align-items-center text-center my-4">
+        <h1
+        [ngClass]="{ 'text-secondary': this.title == undefined}"> {{ this.title || "(...)" }} </h1>  
+    </div>
+    
+    <div class="col-3 d-flex justify-content-end align-items-end">
+        <button class="btn btn-primary align-items-end fs-5"
+        [disabled]="!this.isFormValid"
+        (click)="this.onCreate.emit()"> Créer </button>
+    </div>
+</div>

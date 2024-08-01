@@ -1,0 +1,20 @@
+<app-sheet-card title="Identité" [formGroup]="this.formContent">
+
+    <app-sheet-card-property 
+    propertyName="Nom"> 
+    
+        <input type="text" formControlName="name">
+    
+    </app-sheet-card-property>
+
+    <app-sheet-card-property 
+    propertyName="Sexe"> 
+
+        <select formControlName="gender"> 
+            <option> M </option>
+            <option> F </option>
+        </select>
+    
+    </app-sheet-card-property>
+
+</app-sheet-card>

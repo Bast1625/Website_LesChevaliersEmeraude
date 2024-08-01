@@ -46,7 +46,7 @@ export class CharacterSelectorComponent extends CustomSelectorComponent
             .map(character => { 
                 return { 
                     value: character.id, 
-                    textContent: this.matchService.matchNameLocation(character.name, character.birthPlace) 
+                    textContent: this.matchService.match(character.name, character.birthPlace)! 
                 } 
             });
         });

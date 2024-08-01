@@ -86,12 +86,12 @@ export class CreateCharacterSheetComponent implements OnInit
         this.createCharacterForm.addControl(formName, formGroup);
     }
 
-    public get fullName() : string
+    public get fullName() : string | undefined
     {
         let characterName = this.createCharacterForm.get('characterIdentity')?.get('characterName')?.value;
         let characterBirthPlace = this.createCharacterForm.get('characterStatus')?.get('characterBirthPlace')?.value;
 
-        return this.matchService.matchNameLocation(characterName, characterBirthPlace?.name);
+        return this.matchService.match(characterName, characterBirthPlace?.name);
     }
 
     public onSubmit() : void

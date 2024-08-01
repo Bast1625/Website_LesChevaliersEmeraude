@@ -1,0 +1,28 @@
+<app-sheet>
+    <app-sheet-header 
+    [title]="this.fullName"
+    [isFormValid]="this.form.valid"
+    (onCreate)="this.create()"> </app-sheet-header>
+
+    <app-sheet-body>
+
+        {{ this.form.value | json }}
+        
+        <app-prototype-create-character-identity
+        formName="identity"
+        (onFormReady)="this.appendForm($event)"> </app-prototype-create-character-identity>
+
+        <app-prototype-create-character-status
+        formName="status"
+        [characterName]="this.characterName"
+        (onFormReady)="this.appendForm($event)"></app-prototype-create-character-status>
+        
+        <app-prototype-create-character-relationships
+        formName="relationships"
+        (onFormReady)="this.appendForm($event)"></app-prototype-create-character-relationships>
+
+        <app-prototype-create-character-timeline
+        formName="timeline"
+        (onFormReady)="this.appendForm($event)"></app-prototype-create-character-timeline>
+    </app-sheet-body>
+</app-sheet>

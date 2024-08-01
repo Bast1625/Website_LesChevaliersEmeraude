@@ -8,14 +8,18 @@ import { locations_prefixes } from './locations-prefixes.json'
 
 export class MatchService 
 {
-    public matchNameLocation(name : string, location : string)
+    public match(name : string, location : string) : string | undefined
     {
-        if(location == undefined)
-            return `${name}`;
+        if(name == "" || name == undefined)
+            return undefined;
 
-        let location_prefix : {name : string, prefix : string} | undefined = locations_prefixes.find(prefix => prefix.name == location);
-     
-        let prefix = location_prefix == undefined ? "" : location_prefix.prefix;
+        if(location == undefined)
+            return name;
+
+        let prefix = locations_prefixes.find(prefix => prefix.name == location)?.prefix;
+
+        if(prefix == undefined)
+            return name;
         
         return `${name} ${prefix}${location}`;
     }

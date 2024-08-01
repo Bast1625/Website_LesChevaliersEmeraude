@@ -1,0 +1,27 @@
+<app-sheet-card title="Relations" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Parenté">
+        
+        <div class="d-flex flex-column gap-4 justify-content-center align-items-end">
+            <quantity-controller 
+                [minimumQuantity]="1"
+                [currentQuantity]="this.parents.length"
+                [maximumQuantity]="5"
+                (onAdd)="this.addParents()"
+                (onRemove)="this.removeParents()"> 
+            </quantity-controller>
+            
+            <div class="d-flex flex-column gap-3" formGroupName="parents">
+                <div class="d-flex flex-column"
+                [formGroupName]="i"
+                *ngFor="let parents of this.parents.controls; let i = index">
+
+                    <label class="fst-italic"> Parents #{{ i + 1 }} </label>
+                
+                    <character-selector formControlName="parent1Id"> </character-selector>
+                    <character-selector formControlName="parent2Id"> </character-selector>
+                </div>
+            </div>
+        </div>
+
+    </app-sheet-card-property>
+</app-sheet-card>
