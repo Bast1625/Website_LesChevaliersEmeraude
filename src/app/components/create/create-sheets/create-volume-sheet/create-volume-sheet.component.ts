@@ -44,14 +44,18 @@ export class CreateVolumeSheetComponent
 
     public create() : void
     {
+        let summary = this.form.get('content')?.get('summary')?.value;
+        let isbn = this.form.get('metadata')?.get('isbn')?.value;
+        let publicationDate = this.form.get('metadata')?.get('publicationDate')?.value;
+
         this.volumeService.CreateVolume({
             title: this.form.get("cover")?.get("title")?.value,
             seriesId: this.form.get("cover")?.get("series")?.value["id"],
             bookNumber: this.form.get("cover")?.get("bookNumber")?.value,
             pageCount: this.form.get("content")?.get('pageCount')?.value,
-            summary: this.form.get('content')?.get('summary')?.value,
-            publicationDate: this.form.get('metadata')?.get('publicationDate')?.value,
-            isbn: this.form.get('metadata')?.get('isbn')?.value
+            summary: summary == "" ? null : summary,
+            publicationDate: publicationDate == "" ? null : publicationDate,
+            isbn: isbn == "" ? null : isbn
         }).subscribe(response => { this.Router.navigate(['create']) });
     }
 

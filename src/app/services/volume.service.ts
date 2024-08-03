@@ -24,6 +24,16 @@ export class VolumeService
         return this.http.get<Series[]>(`http://localhost:5031/Volumes/series`);
     }
 
+    public GetVolumesBySeries(id : number) : Observable<Volume[]>
+    {
+        return this.http.get<Volume[]>(`http://localhost:5031/Volumes/series/${id}/volumes`);
+    }
+
+    public GetLatestFromSeries(id : number) : Observable<Volume>
+    {
+        return this.http.get<Volume>(`http://localhost:5031/Volumes/series/${id}/latest`);
+    }
+
     public CreateVolume(newVolume : { 
         title: string,
         seriesId: number,
@@ -35,5 +45,16 @@ export class VolumeService
         }) : Observable<number>
     {
         return this.http.post<number>(`http://localhost:5031/Volumes`, newVolume);
+    }
+
+    public GetEarliestAvailableBookNumber(volumes : Volume[]) : number
+    {
+        let bookNumbers = volumes.map(volume => volume.number);
+
+        let currentIndex = 1;
+        while(bookNumbers.includes(currentIndex))
+            currentIndex++;
+
+        return currentIndex;
     }
 }
