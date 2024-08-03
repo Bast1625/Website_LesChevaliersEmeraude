@@ -6,9 +6,16 @@
         </a>
     </div>
     
-    <div class="col-6 d-flex justify-content-center align-items-center text-center my-4">
-        <h1
-        [ngClass]="{ 'text-secondary': this.title == undefined}"> {{ this.title || "(...)" }} </h1>  
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center my-4">
+
+        <ng-container *ngFor="let title of this.titles">
+
+            <span [class]="title.style"> {{ title.textContent }} </span>
+
+            <span [class]="title.style + ' text-secondary'" 
+            *ngIf="title.textContent == undefined"> {{ title.default }} </span>
+
+        </ng-container>
     </div>
     
     <div class="col-3 d-flex justify-content-end align-items-end">

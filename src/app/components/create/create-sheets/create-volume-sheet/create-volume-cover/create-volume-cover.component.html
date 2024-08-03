@@ -1,0 +1,19 @@
+<app-sheet-card title="Couverture" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Titre">
+
+        <input formControlName="title">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Série">
+
+        <series-selector formControlName="series"> </series-selector>
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Numéro de tome">
+
+        <input type="number" min="1" formControlName="bookNumber">
+
+    </app-sheet-card-property>
+</app-sheet-card>

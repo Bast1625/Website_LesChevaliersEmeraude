@@ -35,7 +35,6 @@ export class CharacterService
         appearanceVolumeId: number | null, 
         deathVolumeId: number | null }) : Observable<number>
     {
-        alert(JSON.stringify(newCharacter));
         return this.http.post<number>(`http://localhost:5031/Characters`, newCharacter);
     }
 

@@ -1,0 +1,31 @@
+<app-sheet-card title="Métadonnées" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Date de parution">
+
+        <input type="date" formControlName="publicationDate">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Lieu de parution">
+
+        <input formControlName="publicationLocation">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Code ISBN">
+
+        <input formControlName="isbn">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Auteur">
+
+        <input formControlName="author">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Éditeur">
+
+        <input formControlName="editor">
+
+    </app-sheet-card-property>
+</app-sheet-card>

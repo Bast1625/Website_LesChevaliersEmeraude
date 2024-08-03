@@ -23,4 +23,12 @@ export class MatchService
         
         return `${name} ${prefix}${location}`;
     }
+
+    public series_volumeNumber(series: string, volumeNumber: number)
+    {
+        if(series == "" || series == undefined)
+            return undefined;
+
+        return `${series}, Tome ${volumeNumber}`;
+    }
 }

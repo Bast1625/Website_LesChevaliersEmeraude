@@ -16,7 +16,11 @@ import { RouterLink } from '@angular/router';
 export class SheetHeaderComponent 
 {
     @Output() onCreate = new EventEmitter<void>();
-
-    @Input() public title : string | undefined = "";
     @Input() public isFormValid : boolean = false;
+
+    @Input() public titles : { 
+        textContent: string | undefined, 
+        style: string | undefined 
+        default: string | undefined 
+    }[] = [];
 }

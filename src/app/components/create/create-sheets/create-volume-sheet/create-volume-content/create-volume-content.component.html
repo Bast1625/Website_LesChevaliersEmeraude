@@ -1,0 +1,19 @@
+<app-sheet-card title="Contenu" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Nombre de pages">
+
+        <input type="number" min="1" formControlName="pageCount">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Nombre de chapitres">
+
+        <input type="number" min="1" formControlName="chapterCount">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Résumé">
+
+        <textarea class="px-2" rows="10" cols="100" formControlName="summary"> </textarea>
+
+    </app-sheet-card-property>
+</app-sheet-card>

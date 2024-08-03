@@ -1,0 +1,32 @@
+<app-sheet>
+    <app-sheet-header
+    [titles]="[
+        { textContent: this.bookTitle, style: 'fs-1 fw-medium', default: '(...)' },
+        { textContent: this.fullSeries, style: 'fs-3 fw-medium', default: '' }    
+    ]"
+    [isFormValid]="this.form.valid"
+    (onCreate)="this.create()"> </app-sheet-header>
+
+    <app-sheet-body>
+
+        {{ this.form.value | json }}
+        
+        <app-create-volume-cover
+        formName="cover"
+        (onFormReady)="this.appendForm($event)"></app-create-volume-cover>
+
+        <app-create-volume-content
+             formName="content"
+             (onFormReady)="this.appendForm($event)"></app-create-volume-content>
+
+        <app-create-volume-metadata
+             formName="metadata"
+             (onFormReady)="this.appendForm($event)"></app-create-volume-metadata>
+    </app-sheet-body>
+</app-sheet>
+
+<!-- 
+    Couverture: Titre, Séries, Numéro de tome
+    Contenu: Résumé, Nombre de pages, Nombre de chapitres
+    Métadonnées: Date de parution, Lieu de parution, Auteur, Éditeur, ISBN
+-->

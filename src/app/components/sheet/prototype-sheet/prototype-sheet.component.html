@@ -1,6 +1,6 @@
 <app-sheet>
-    <app-sheet-header 
-    [title]="this.fullName"
+    <app-sheet-header
+    [titles]="[ { textContent: this.fullName, style: 'fs-1 fw-medium', default: '(...)' } ]"
     [isFormValid]="this.form.valid"
     (onCreate)="this.create()"> </app-sheet-header>
 
