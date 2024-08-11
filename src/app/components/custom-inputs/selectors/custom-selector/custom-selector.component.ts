@@ -24,6 +24,12 @@ export class CustomSelectorComponent implements OnInit, ControlValueAccessor
 {
     @Output() public onSelection : EventEmitter<any> = new EventEmitter<any>();
 
+    @Input() public isControlDisabled : boolean = false;
+    
+    public defaultValue : { value: any, textContent: string} = { value: 0, textContent: "_" };
+    public data : { value: any, textContent: string | undefined }[] = [];
+    
+    private _selection : any = this.defaultValue;
     public get selection() : string
     {
         return this._selection;
@@ -34,11 +40,7 @@ export class CustomSelectorComponent implements OnInit, ControlValueAccessor
         this.propagateChange(this._selection);
     }
 
-    public defaultValue : { value: any, textContent: string} = { value: 0, textContent: "_" };
-    public data : { value: any, textContent: string }[] = [];
-    
     public propagateChange = (_ : any) => { };
-    private _selection : any = this.defaultValue;
 
     public ngOnInit() : void 
     {
@@ -56,4 +58,9 @@ export class CustomSelectorComponent implements OnInit, ControlValueAccessor
     }
 
     public registerOnTouched(fn: any): void { }
+
+    public setDisabledState(isDisabled: boolean): void 
+    {
+        this.isControlDisabled = isDisabled;
+    }
 }

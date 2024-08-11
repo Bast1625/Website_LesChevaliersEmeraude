@@ -39,17 +39,23 @@ export class CharacterSelectorComponent extends CustomSelectorComponent
 
     public override ngOnInit() : void 
     {
-        this.characterService.GetCharacters().subscribe(response => {
-            this.characters = response;
-
-            this.data = this.characters
-            .map(character => { 
-                return { 
-                    value: character.id, 
-                    textContent: this.matchService.match(character.name, character.birthPlace)! 
-                } 
-            });
+        this.data = this.characterService.characters.map(character => {
+            return {
+                value: character.id,
+                textContent: this.matchService.match(character.name, character.birthPlace)
+            };
         });
+        // this.characterService.GetCharacters().subscribe(response => {
+        //     this.characters = response;
+
+        //     this.data = this.characters
+        //     .map(character => { 
+        //         return { 
+        //             value: character.id, 
+        //             textContent: this.matchService.match(character.name, character.birthPlace)! 
+        //         } 
+        //     });
+        // });
     }
 
     

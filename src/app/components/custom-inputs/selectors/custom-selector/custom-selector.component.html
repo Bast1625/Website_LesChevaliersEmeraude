@@ -1,5 +1,6 @@
 <select
-[(ngModel)]="this.selection" 
+[(ngModel)]="this.selection"
+[disabled]="this.isControlDisabled" 
 (change)="this.onSelection.emit(this.selection)">
     
     <option [ngValue]="this.defaultValue.value" selected> {{ this.defaultValue.textContent }} </option>

@@ -1,0 +1,29 @@
+<app-sheet>
+    <app-sheet-header
+    [titles]="[
+        { textContent: this.locationName, style: 'fs-1 fw-medium', default: '(...)' } 
+    ]"
+    [isFormValid]="this.form.valid"
+    (onCreate)="this.create()"> </app-sheet-header>
+
+    <app-sheet-body>
+
+        {{ this.form.value | json }}
+
+        <app-create-location-geography
+        formName="geography"
+        (onFormReady)="this.appendForm($event)"> </app-create-location-geography>
+
+        <app-create-location-social
+        formName="social"
+        [locationName]="this.locationName"
+        (onFormReady)="this.appendForm($event)"> </app-create-location-social>
+
+    </app-sheet-body>
+</app-sheet>
+
+<!--
+    geography: name, continent, universe
+    social: gentilic, religion, sovereigns
+    repartition: birth, home
+-->

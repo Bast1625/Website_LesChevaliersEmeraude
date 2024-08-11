@@ -12,6 +12,7 @@ import { PrototypeSheetComponent } from './components/sheet/prototype-sheet/prot
 
 import { CreateCharacterSheetComponent } from './components/create/create-sheets/create-character-sheet/create-character-sheet.component';
 import { CreateVolumeSheetComponent } from './components/create/create-sheets/create-volume-sheet/create-volume-sheet.component';
+import { CreateLocationSheetComponent } from './components/create/create-sheets/create-location-sheet/create-location-sheet.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full"},
@@ -32,6 +33,7 @@ export const routes: Routes = [
 
     { path: "create", component: CreateComponent },
     { path: "create/character", component: CreateCharacterSheetComponent },
+    { path: "create/location", component: CreateLocationSheetComponent },
     { path: "create/volume", component: CreateVolumeSheetComponent },
     { path: "create/prototype", component: PrototypeSheetComponent },
 

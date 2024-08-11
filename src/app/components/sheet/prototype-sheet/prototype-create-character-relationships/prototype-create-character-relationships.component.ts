@@ -28,13 +28,7 @@ import { isBoxedPrimitive } from 'util/types';
 export class PrototypeCreateCharacterRelationshipsComponent extends BaseSheetCardComponent 
 {
     public override formContent : FormGroup = this.formBuilder.group({
-        parents: this.formBuilder.array([
-                    this.formBuilder.group({
-                        parent1Id: [0],
-                        parent2Id: [0],
-                        isBiological: [false]
-                    })
-                ])
+        parents: this.formBuilder.array([ ])
     });
 
     public get parents() : FormArray
@@ -48,7 +42,7 @@ export class PrototypeCreateCharacterRelationshipsComponent extends BaseSheetCar
             parent1Id: [0, Validators.min(1)],
             parent2Id: [0, Validators.min(1)],
             isBiological: [false]
-        }))
+        }));
     }
 
     public removeParents() : void

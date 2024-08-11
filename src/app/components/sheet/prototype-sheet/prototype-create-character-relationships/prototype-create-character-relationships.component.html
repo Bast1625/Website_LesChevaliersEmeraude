@@ -3,7 +3,7 @@
         
         <div class="d-flex flex-column gap-4 justify-content-center align-items-end">
             <quantity-controller 
-                [minimumQuantity]="1"
+                [minimumQuantity]="0"
                 [currentQuantity]="this.parents.length"
                 [maximumQuantity]="5"
                 (onAdd)="this.addParents()"
@@ -19,7 +19,10 @@
                 
                     <character-selector formControlName="parent1Id"> </character-selector>
                     <character-selector formControlName="parent2Id"> </character-selector>
+
                 </div>
+
+                <span *ngIf="this.parents.controls.length == 0"> Inconnue / Aucune </span>
             </div>
         </div>
 

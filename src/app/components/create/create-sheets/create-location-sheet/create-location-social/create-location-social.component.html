@@ -1,0 +1,39 @@
+<app-sheet-card title="Social" [formGroup]="this.formContent">
+
+    <app-sheet-card-property propertyName="Gentilé">
+        <input type="text" formControlName="gentilic">
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Religion">
+
+        <character-selector formControlName="religion"> </character-selector>
+    
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Royauté">
+        
+        <div class="d-flex flex-column gap-4 justify-content-center align-items-end">
+            <quantity-controller 
+                [minimumQuantity]="1"
+                [currentQuantity]="this.royalty.length"
+                [maximumQuantity]="5"
+                (onAdd)="this.addSovereigns()"
+                (onRemove)="this.removeSovereigns()"> 
+            </quantity-controller>
+            
+            <div class="d-flex flex-column gap-3" formGroupName="royalty">
+                <div class="d-flex flex-column"
+                [formGroupName]="i"
+                *ngFor="let sovereigns of this.royalty.controls; let i = index">
+
+                    <label class="fst-italic"> {{ this.getFullRoyaltyName(i) || "Souverains #" + (i + 1) }} </label>
+                    
+                    <character-selector formControlName="sovereign1Id"> </character-selector>
+                    <character-selector formControlName="sovereign2Id"> </character-selector>
+                </div>
+            </div>
+        </div>
+    
+    </app-sheet-card-property>
+
+</app-sheet-card>

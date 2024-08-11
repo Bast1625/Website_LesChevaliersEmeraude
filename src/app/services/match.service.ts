@@ -31,4 +31,12 @@ export class MatchService
 
         return `${series}, Tome ${volumeNumber}`;
     }
+
+    public sovereigns_location(
+        sovereign1 : { name : string, gender : string }, 
+        sovereign2: { name : string, gender : string}, 
+        locationName: string) : string
+    {
+        return "";
+    }
 }

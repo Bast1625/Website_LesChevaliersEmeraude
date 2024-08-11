@@ -35,9 +35,9 @@ export class PrototypeCreateCharacterStatusComponent extends BaseSheetCardCompon
 
     public override formContent : FormGroup = this.formBuilder.group({
         birthPlace: [''],
-        homePlacesIds: this.formBuilder.array([ ['', Validators.required] ])
+        homePlacesIds: this.formBuilder.array([ ])
     });
-
+//['', Validators.required] 
     public constructor(protected override formBuilder : FormBuilder, private matchService : MatchService) { super(formBuilder); }
 
     public get homePlaces() : FormArray

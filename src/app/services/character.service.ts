@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -9,10 +9,23 @@ import { Knight } from './data/Knight';
   providedIn: 'root'
 })
 
-export class CharacterService 
+export class CharacterService
 {
-    public constructor(private http : HttpClient) { }
-    
+    public characters : Character[] = [];
+
+    public constructor(private http : HttpClient) { this.Synchronise(); }
+
+    public Synchronise() : void
+    {
+        this.http.get<Character[]>("http://localhost:5031/Characters").subscribe(characters => {
+            this.characters = characters;
+        });
+    }
+
+    /*
+        Avant de partir, j'étais en train de modifier ce service pour avoir à faire le moins de requête HTTP possibles
+        et de limiter l'utilisation des Observables puisque tous sera accessibles depuis un tableau (characters : Character[])
+    */
     public GetCharacters() : Observable<Character[]>
     {
         return this.http.get<Character[]>("http://localhost:5031/Characters");  
@@ -37,6 +50,8 @@ export class CharacterService
     {
         return this.http.post<number>(`http://localhost:5031/Characters`, newCharacter);
     }
+
+
 
     public GetKnights() : Observable<Knight[]>
     {

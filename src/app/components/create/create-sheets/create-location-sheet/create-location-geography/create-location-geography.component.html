@@ -1,0 +1,28 @@
+<app-sheet-card title="Géographie" [formGroup]="this.formContent">
+    <app-sheet-card-property propertyName="Nom">
+        
+        <input type="text" formControlName="name">
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Univers">
+
+        <select formControlName="universe">
+            <option selected> Inconnu </option>
+            <option> Abussos </option>
+            <option> Archéron </option>
+        </select>
+
+    </app-sheet-card-property>
+
+    <app-sheet-card-property propertyName="Continent">
+
+        <select formControlName="continent">
+            <option selected> Aucun </option>
+            <option> Éther </option>
+            <option> Enkidiev </option>
+            <option> Enlilkisar </option>
+        </select>
+
+    </app-sheet-card-property>
+</app-sheet-card>

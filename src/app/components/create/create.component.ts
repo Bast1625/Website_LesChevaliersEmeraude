@@ -19,7 +19,7 @@ export class CreateComponent
         
         { name: 'Personnage', content: 'Ajouter un personnage et l\'intégrer avec les autres éléments tels que ses relations familiales ou les lieux d\'habitation.', route: 'character'},
 
-        { name: 'Lieu', content: 'Ajouter un lieu, un royaume, une île ou un panthéon', route: 'character'},
+        { name: 'Lieu', content: 'Ajouter un lieu, un royaume, une île ou un panthéon', route: 'location'},
         { name: 'Tome', content: 'Ajouter un tome appartenant aux nombreuses séries fantastiques écrites par Anne Robillard', route: 'volume'},
         { name: 'Race', content: 'Ajouter une race habitant les différents lieux', route: 'character'},
         { name: 'Profession', content: 'Établir les métiers ou les rôles des personnages', route: 'character'},
