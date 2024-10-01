@@ -26,8 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+Voici le lien vers l'API: https://github.com/Bast1625/API_LesChevaliersEmeraude
 Voici des images du projet actuellement:
-
 Le site Web: 
 ![Screenshot 2024-10-01 061906](https://github.com/user-attachments/assets/229b68f5-16bb-47c5-a327-0cad53d781f5)
 ![Screenshot 2024-10-01 061939](https://github.com/user-attachments/assets/c92c1b38-551b-4a92-b0b1-8e10956b83f5)
