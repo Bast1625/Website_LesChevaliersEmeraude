@@ -3,7 +3,7 @@ Ce projet visait à améliorer mes compétences dans le Full Stack (frontend, ba
 - Élaboration d'une base de données à multiples tables qui supporte des relations plus complexes entre certains éléments (par exemple, des relations familiales)
 - Développement d'un service web contenant de nombreux endpoints retournant des objets représentants ces relations.
 - Apprentissage et application de bibliothèques mieux adaptés pour mes besoins (par exemple, ReactiveForms pour Angular)
-- Apprentissage et application de patrons de conceptions. 
+- Apprentissage et application de patrons de conceptions et de systèmes provenant des différents framework. 
 
 Il est à noter que ce projet n'est pas terminé.
 
